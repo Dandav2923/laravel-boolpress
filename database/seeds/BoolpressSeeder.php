@@ -1,8 +1,9 @@
 <?php
 use Faker\Generator as Faker;
 use Illuminate\Database\Seeder;
-use App\Model\Boolpress;
-use Psy\Util\Str;
+use Illuminate\Support\Str;
+use App\Boolpress;
+// use Psy\Util\Str;
 class BoolpressSeeder extends Seeder
 {
     /**
