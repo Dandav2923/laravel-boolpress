@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\PostController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,4 +27,5 @@ Route::middleware('auth')
     ->group(function() {
         Route::get('/', 'HomeController@index')
         ->name('home');
+        Route::resource('boolpresses', 'PostController');
     });
