@@ -10,7 +10,7 @@
                     @method('POST')
                     <div class="mb-3">
                         <label for="title" class="form-label">New Element</label>
-                        <input type="text" class="form-control" id="title"           aria-describedby="emailHelp" name="title" placeholder="Inserisci il titolo">
+                        <input type="text" class="form-control" id="title"         aria-describedby="emailHelp" name="title" placeholder="Inserisci il titolo">
                         @error('title')
                             {{$message}}
                         @enderror
@@ -19,13 +19,6 @@
                         <label for="content" class="form-label"></label>
                         <input type="text" class="form-control" id="content" name="content" placeholder="inserisci il contenuto del post">
                         @error('content')
-                            {{$message}}
-                        @enderror
-                    </div>
-                    <div class="mb-3">
-                        <label for="slug" class="form-label"></label>
-                        <input type="text" class="form-control" id="slug" name="slug" placeholder="inserisci lo slug univoco">
-                        @error('slug')
                             {{$message}}
                         @enderror
                     </div>

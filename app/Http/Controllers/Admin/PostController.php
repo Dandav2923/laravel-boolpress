@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Post;
+use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
@@ -14,7 +16,8 @@ class PostController extends Controller
      */
     public function index()
     {
-        //
+        $posts = Post::paginate(10);
+        return view('admin.posts.index', ['posts'=> $posts]);
     }
 
     /**
@@ -24,7 +27,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.posts.create');
     }
 
     /**
@@ -35,7 +38,20 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validateData = $request->validate(
+        [
+            'title'=> 'required | max:80',
+            'content'=> 'required | max:1000'
+        ]);
+
+        
+        $boolpress = new Post();
+        $data = $request->all();
+        $boolpress->fill($data);
+        $boolpress->slug = $boolpress->createSlug($data['title']);
+        $boolpress->user_id = Auth::id();
+        $boolpress->save();
+        return redirect()->route('adminboolpresses.show', $boolpress);
     }
 
     /**
@@ -44,9 +60,10 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Post $boolpress)
     {
-        //
+        $data =['boolpress' => $boolpress];
+        return view('admin.posts.show', $data);
     }
 
     /**
@@ -55,9 +72,10 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Post $boolpress)
     {
-        //
+        // dd($boolpress);
+        return view('admin.posts.edit', ['boolpress' => $boolpress]);
     }
 
     /**
@@ -67,9 +85,12 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Post $boolpress)
     {
-        //
+        $data = $request->all();
+        $updated = $boolpress->update($data);
+        $boolpress->slug = $boolpress->createSlug($data['title']);
+        return redirect()->route('adminboolpresses.show', $boolpress->id);
     }
 
     /**
@@ -78,8 +99,11 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Post $boolpress)
     {
-        //
+        $boolpress->delete();
+        return redirect()
+            ->route('adminboolpresses.index')
+            ->with('status', "Hai eliminato correttamente il dato $boolpress->id");
     }
 }

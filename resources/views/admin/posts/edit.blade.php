@@ -15,11 +15,6 @@
                         <label for="content" class="form-label"></label>
                         <input type="text" class="form-control" id="content" name="content" placeholder="inserisci il contenuto" value="{{$boolpress->content}}">
                     </div>
-                    <div class="mb-3">
-                        <label for="slug" class="form-label"></label>
-                        <input type="text" class="form-control" id="slug" name="slug" placeholder="inserisci lo slug univoco" 
-                        value="{{$boolpress->slug}}">
-                    </div>
                     <button type="submit" class="btn btn-primary">Modifica un elemento</button>
                 </form>                 
             </div>

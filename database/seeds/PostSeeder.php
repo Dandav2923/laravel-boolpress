@@ -1,7 +1,10 @@
 <?php
 
 use Illuminate\Database\Seeder;
-
+use App\Post;
+use Faker\Generator as Faker;
+use Illuminate\Support\Str;
+use App\User;
 class PostSeeder extends Seeder
 {
     /**
@@ -9,8 +12,20 @@ class PostSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
+    public function run(Faker $faker)
     {
-        //
+        $user = User::all()->first();
+        if (!empty($user)){
+            for ($i = 0; $i < 30; $i++) {
+                $newPost = new Post();
+                $newPost->title = $faker->sentence(3, true);
+                $newPost->content = $faker->paragraphs(5, true);
+                $newPost->slug = Str::slug($newPost->title . '-' . $i, '-');
+    
+                $randomUser = User::inRandomOrder()->first();
+                $newPost->user_id = $randomUser->id;
+                $newPost->save();
+            }
+        }
     }
 }
