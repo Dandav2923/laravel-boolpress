@@ -47,7 +47,7 @@ class BoolpressController extends Controller
         $data = $request->all();
         $boolpress->fill($data);
         $boolpress->save();
-        return redirect()->route('admin.posts.show', $boolpress);
+        return redirect()->route('adminboolpresses.show', $boolpress);
     }
 
     /**
@@ -58,7 +58,7 @@ class BoolpressController extends Controller
      */
     public function show(Boolpress $boolpress)
     {
-        $data =['boopress' => $boolpress];
+        $data =['boolpress' => $boolpress];
         return view('admin.posts.show', $data);
     }
 
@@ -84,7 +84,7 @@ class BoolpressController extends Controller
     {
         $data = $request->all();
         $updated = $boolpress->update($data);
-        return redirect()->route('admin.posts.show', $boolpress->id);
+        return redirect()->route('adminboolpresses.show', $boolpress->id);
     }
 
     /**
@@ -97,7 +97,7 @@ class BoolpressController extends Controller
     {
         $boolpress->delete();
         return redirect()
-            ->route('admin.posts.index')
+            ->route('adminboolpresses.index')
             ->with('status', "Hai eliminato correttamente il dato $boolpress->id");
     }
 }
