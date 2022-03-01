@@ -28,13 +28,13 @@
                                 <a href="{{route('adminboolpresses.create')}}">Create new element</a>
                             </td>
                         <td>
-                            <a href="{{route('adminboolpresses.edit', $item->id)}}">
+                            <a href="{{route('adminboolpresses.edit', $item)}}">
                                 Modifica elemento
                             </a>
                         </td>
                         <td>
                             <form 
-                                action="{{route('adminboolpresses.destroy', $item->id)}}" method="POST">
+                                action="{{route('adminboolpresses.destroy', $item)}}" method="POST">
                                 @csrf
                                 @method('DELETE')
                                     <input type="submit" class="btn btn-danger" value="delete">

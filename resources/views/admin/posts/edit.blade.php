@@ -4,7 +4,7 @@
     <div class="container">
         <div class="row">
             <div class="col">
-                <form action="{{route('adminboolpresses.update', $boolpress->id)}}" method="post">
+                <form action="{{route('adminboolpresses.update', $boolpress)}}" method="post">
                     @csrf
                     @method('PATCH')
                     <div class="mb-3">

@@ -69,7 +69,7 @@ class PostController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Post
      * @return \Illuminate\Http\Response
      */
     public function edit(Post $boolpress)
@@ -82,7 +82,7 @@ class PostController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Post
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Post $boolpress)
@@ -90,13 +90,13 @@ class PostController extends Controller
         $data = $request->all();
         $updated = $boolpress->update($data);
         $boolpress->slug = $boolpress->createSlug($data['title']);
-        return redirect()->route('adminboolpresses.show', $boolpress->id);
+        return redirect()->route('adminboolpresses.show', $boolpress);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Post
      * @return \Illuminate\Http\Response
      */
     public function destroy(Post $boolpress)
