@@ -39,8 +39,7 @@ class BoolpressController extends Controller
         $validateData = $request->validate(
         [
             'title'=> 'required | max:80',
-            'content'=> 'required | max:1000',
-            'slug'=> 'required | max:80'
+            'content'=> 'required | max:1000'
         ]);
 
         $boolpress = new Boolpress();
