@@ -15,8 +15,8 @@ class BoolpressController extends Controller
     public function index()
     {
 
-        $posts = Boolpress::all();
-        return view('admin.index', ['posts'=> $posts]);
+        $posts = Boolpress::paginate(10);
+        return view('admin.posts.index', ['posts'=> $posts]);
     }
     /**
      * Show the form for creating a new resource.
@@ -25,7 +25,7 @@ class BoolpressController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.posts.create');
     }
 
     /**
@@ -36,7 +36,18 @@ class BoolpressController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validateData = $request->validate(
+        [
+            'title'=> 'required | max:80',
+            'content'=> 'required | max:1000',
+            'slug'=> 'required | max:80'
+        ]);
+
+        $boolpress = new Boolpress();
+        $data = $request->all();
+        $boolpress->fill($data);
+        $boolpress->save();
+        return redirect()->route('admin.posts.show', $boolpress);
     }
 
     /**
@@ -47,7 +58,8 @@ class BoolpressController extends Controller
      */
     public function show(Boolpress $boolpress)
     {
-        // return view('')
+        $data =['boopress' => $boolpress];
+        return view('admin.posts.show', $data);
     }
 
     /**
@@ -58,7 +70,7 @@ class BoolpressController extends Controller
      */
     public function edit(Boolpress $boolpress)
     {
-        //
+        return view('admin.posts.edit', ['boolpress' => $boolpress]);
     }
 
     /**
@@ -70,7 +82,9 @@ class BoolpressController extends Controller
      */
     public function update(Request $request, Boolpress $boolpress)
     {
-        //
+        $data = $request->all();
+        $updated = $boolpress->update($data);
+        return redirect()->route('admin.posts.show', $boolpress->id);
     }
 
     /**
@@ -81,6 +95,9 @@ class BoolpressController extends Controller
      */
     public function destroy(Boolpress $boolpress)
     {
-        //
+        $boolpress->delete();
+        return redirect()
+            ->route('admin.posts.index')
+            ->with('status', "Hai eliminato correttamente il dato $boolpress->id");
     }
 }
