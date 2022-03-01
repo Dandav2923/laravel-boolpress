@@ -14,7 +14,9 @@ class BoolpressController extends Controller
      */
     public function index()
     {
-        return view('admin.home');
+
+        $posts = Boolpress::all();
+        return view('admin.index', ['posts'=> $posts]);
     }
     /**
      * Show the form for creating a new resource.
@@ -45,7 +47,7 @@ class BoolpressController extends Controller
      */
     public function show(Boolpress $boolpress)
     {
-        //
+        // return view('')
     }
 
     /**
