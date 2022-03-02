@@ -88,8 +88,8 @@ class PostController extends Controller
     public function update(Request $request, Post $boolpress)
     {
         $data = $request->all();
-        $updated = $boolpress->update($data);
         $boolpress->slug = $boolpress->createSlug($data['title']);
+        $updated = $boolpress->update($data);
         return redirect()->route('adminboolpresses.show', $boolpress);
     }
 
