@@ -15,22 +15,37 @@
                             name="category_id">
                             <option value="">Select a category</option>
                             @foreach ($categories as $item)
-                                <option value="{{$item->id}}">{{$item->name}}</option>
+                                <option 
+                                    @if (old('category_id') == $item->id) 
+                                    selected 
+                                    @endif 
+                                    value="{{$item->id}}">
+                                        {{$item->name}}
+                                </option>
                             @endforeach
                         </select>
+                        @error('category_id')
+                        <div class="alert alert-danger mt-3">
+                            {{ $message }}
+                        </div>
+                    @enderror
                     </div>
                     <div class="mb-3">
                         <label for="title" class="form-label">New Element</label>
                         <input type="text" class="form-control" id="title"         aria-describedby="emailHelp" name="title" placeholder="Inserisci il titolo">
                         @error('title')
-                            {{$message}}
+                            <div class="alert alert-danger mt-3">
+                            {{ $message }}
+                        </div>
                         @enderror
                     </div>
                     <div class="mb-3">
                         <label for="content" class="form-label"></label>
                         <input type="text" class="form-control" id="content" name="content" placeholder="inserisci il contenuto del post">
                         @error('content')
-                            {{$message}}
+                            <div class="alert alert-danger mt-3">
+                            {{ $message }}
+                        </div>
                         @enderror
                     </div>
                     <button type="submit" class="btn btn-primary">

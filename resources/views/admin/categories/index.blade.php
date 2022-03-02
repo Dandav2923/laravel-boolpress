@@ -34,7 +34,8 @@
                             <td>{{ $category->name }}</td>
                             <td>{{ $category->created_at }}</td>
                             <td>{{ $category->updated_at }}</td>
-                            <td><a class="btn btn-primary"
+                            <td>
+                                <a class="btn btn-primary"
                                     href="{{ route('admincategories.show', $category->slug) }}">View</a>
                             </td>
                         </tr>

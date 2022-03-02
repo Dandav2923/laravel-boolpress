@@ -44,7 +44,8 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('adminboolpresses.index') }}">
+                                    <a class="nav-link" 
+                                    href="{{ route('admincategories.index') }}">
                                         <i class="bi bi-files"></i>
                                         All Categories
                                     </a>
@@ -55,16 +56,11 @@
                                         All Posts
                                     </a>
                                 </li>
-                                {{-- <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('admin.posts.indexUser') }}">
+                                <li class="nav-item">
+                                    <a class="nav-link" 
+                                    href="{{ route('adminposts.indexUser') }}">
                                         <i class="bi bi-files"></i>
                                         My Posts
-                                    </a>
-                                </li> --}}
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">
-                                        <i class="bi bi-folder"></i>
-                                        Categories
                                     </a>
                                 </li>
                             </ul>

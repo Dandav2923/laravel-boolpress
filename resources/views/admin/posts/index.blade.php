@@ -14,7 +14,9 @@
                     <tr>
                     <th scope="col">Title</th>
                     <th scope="col">Content</th>
-                    <th scope="col">Slug</th>
+                    <th scope="col">Category</th>
+                    <th scope="col">Created At</th>
+                    <th scope="col">Updated At</th>
                     <th colspan="3" scope="col">Actions</th>
                     </tr>
                 </thead>
@@ -23,7 +25,9 @@
                         <tr>
                             <td>{{$item->title}}</td>
                             <td>{{$item->content}}</td>
-                            <td>{{$item->slug}}</td>
+                            <td>{{$item->category_id}}</td>
+                            <td>{{$item->created_at}}</td>
+                            <td>{{$item->updated_at}}</td>
                             <td>
                                 <a href="{{route('adminboolpresses.create')}}">Create new element</a>
                             </td>
@@ -43,6 +47,11 @@
                         </tr>
                     @endforeach
                 </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="8">{{ $posts->links() }}</td>
+                    </tr>
+                </tfoot>
             </table>
         </div>
     </div>
