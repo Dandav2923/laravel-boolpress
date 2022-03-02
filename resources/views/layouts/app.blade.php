@@ -1,3 +1,4 @@
+{{-- questo layout viene utlizzato dai file situati nella cartella auth per il log in  --}}
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
