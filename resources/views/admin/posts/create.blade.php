@@ -9,6 +9,17 @@
                     @csrf
                     @method('POST')
                     <div class="mb-3">
+                        <select 
+                            class="form-select" 
+                            aria-label="Default select example"
+                            name="category_id">
+                            <option value="">Select a category</option>
+                            @foreach ($categories as $item)
+                                <option value="{{$item->id}}">{{$item->name}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="mb-3">
                         <label for="title" class="form-label">New Element</label>
                         <input type="text" class="form-control" id="title"         aria-describedby="emailHelp" name="title" placeholder="Inserisci il titolo">
                         @error('title')

@@ -5,6 +5,7 @@ use App\Post;
 use Faker\Generator as Faker;
 use Illuminate\Support\Str;
 use App\User;
+use App\Category;
 class PostSeeder extends Seeder
 {
     /**
@@ -24,6 +25,9 @@ class PostSeeder extends Seeder
     
                 $randomUser = User::inRandomOrder()->first();
                 $newPost->user_id = $randomUser->id;
+                
+                $randomCategory = Category::inRandomOrder()->first();
+                $newPost->category_id = $randomCategory->id;
                 $newPost->save();
             }
         }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Post;
+use App\Category;
 use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
@@ -27,7 +28,8 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('admin.posts.create');
+        $categories = Category::all();
+        return view('admin.posts.create', ['categories'=> $categories]);
     }
 
     /**
@@ -41,7 +43,8 @@ class PostController extends Controller
         $validateData = $request->validate(
         [
             'title'=> 'required | max:80',
-            'content'=> 'required | max:1000'
+            'content'=> 'required | max:1000',
+            'category_id' => 'exists:App\Category,id'
         ]);
 
         
@@ -74,8 +77,11 @@ class PostController extends Controller
      */
     public function edit(Post $boolpress)
     {
-        // dd($boolpress);
-        return view('admin.posts.edit', ['boolpress' => $boolpress]);
+        if (Auth::user()->id != $boolpress->user_id) {
+            abort('403');
+        }
+        $categories = Category::all();
+        return view('admin.posts.edit', ['boolpress' => $boolpress, 'categories'=> $categories]);
     }
 
     /**
