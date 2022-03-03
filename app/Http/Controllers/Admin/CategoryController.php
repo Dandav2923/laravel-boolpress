@@ -36,6 +36,11 @@ class CategoryController extends Controller
         return view('admin.categories.show', ['category' => $category]);
     }
 
+    public function edit(Category $category)
+    {
+        return view('admin.categories.edit', ['category'=> $category]);
+    }
+
     public function update(Request $request, Category $category)
     {
         $data = $request->all();

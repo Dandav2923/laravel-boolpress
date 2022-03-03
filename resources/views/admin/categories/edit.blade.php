@@ -5,18 +5,19 @@
         <div class="row">
             <div class="col">
                 <form 
-                    action="{{route('admincategories.store')}}" 
+                    action="{{route('admincategories.update', $category)}}" 
                     method="POST">
                     @csrf
-                    @method('POST')
+                    @method('PATCH')
                         <div class="mb-3">
-                            <label for="name" class="form-label">New Category Element</label>
+                            <label for="name" class="form-label">Modify Category Element</label>
                             <input type="text" 
                                 class="form-control" 
                                 id="name" 
                                 aria-describedby="emailHelp" 
                                 name="name"      
-                                placeholder="Inserisci il nome della categoria">
+                                placeholder="Inserisci il nome della categoria"
+                                value="{{$category->name}}">
                                 @error('name')
                                     <div class="alert alert-danger mt-3">
                                         {{ $message }}
@@ -24,7 +25,7 @@
                                 @enderror
                         </div>
                         <button type="submit" class="btn btn-primary">
-                            Crea un nuovo elemento
+                            Modifica Elemento
                         </button>
                 </form>
             </div>

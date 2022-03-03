@@ -36,19 +36,23 @@
                             <td>{{ $category->updated_at }}</td>
                             <td>
                                 <a class="btn btn-primary"
-                                    href="{{ route('admincategories.show', $category->slug) }}">View</a>
+                                    href="{{ route('admincategories.show', $category) }}">View</a>
                             </td>
                             <td>
                                 <a class="btn btn-primary"
-                                    href="{{ route('admincategories.create', $category->slug) }}">Create</a>
+                                    href="{{ route('admincategories.create')}}">Create</a>
                             </td>
                             <td>
                                 <a class="btn btn-primary"
-                                    href="{{ route('admincategories.edit', $category->slug) }}">Modify</a>
+                                    href="{{ route('admincategories.edit', $category)}}">Modify</a>
                             </td>
                             <td>
-                                <a class="btn btn-danger"
-                                    href="{{ route('admincategories.destroy', $category->slug) }}">Delete</a>
+                                <form 
+                                action="{{route('admincategories.destroy', $category)}}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                    <input type="submit" class="btn btn-danger" value="Delete">
+                            </form>
                             </td>
                         </tr>
                     @endforeach

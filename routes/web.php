@@ -25,15 +25,10 @@ Route::middleware('auth')
     ->name('admin')
     ->prefix('admin')
     ->group(function() {
-        Route::get('/categories', 'CategoryController@create')
-            ->name('categories.create');
         Route::get('/', 'HomeController@index')
-        ->name('home');
-        Route::get('/categories', 'CategoryController@index')
-        ->name('categories.index');
-        Route::get('/categories/{category}', 'CategoryController@show')
-            ->name('categories.show');
+            ->name('home');
         Route::get('/myposts', 'PostController@indexUser')
             ->name('posts.indexUser');
+        Route::resource('categories', 'CategoryController');
         Route::resource('boolpresses', 'PostController');
     });
