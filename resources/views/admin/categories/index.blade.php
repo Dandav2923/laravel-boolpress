@@ -38,6 +38,18 @@
                                 <a class="btn btn-primary"
                                     href="{{ route('admincategories.show', $category->slug) }}">View</a>
                             </td>
+                            <td>
+                                <a class="btn btn-primary"
+                                    href="{{ route('admincategories.create', $category->slug) }}">Create</a>
+                            </td>
+                            <td>
+                                <a class="btn btn-primary"
+                                    href="{{ route('admincategories.edit', $category->slug) }}">Modify</a>
+                            </td>
+                            <td>
+                                <a class="btn btn-danger"
+                                    href="{{ route('admincategories.destroy', $category->slug) }}">Delete</a>
+                            </td>
                         </tr>
                     @endforeach
 
