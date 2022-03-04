@@ -23,6 +23,10 @@ class Post extends Model
     {
         return $this->belongsTo('App\Category');
     }
+    public function tags()
+    {
+        return $this->belongsToMany('App\Tag');
+    }
 
     /**
      * Get the route key for the model.

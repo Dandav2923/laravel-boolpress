@@ -18,5 +18,11 @@ class TagSeeder extends Seeder
             'Geography',
             'Math'
         ];
+
+        foreach ($arrayTags as  $item) {
+            $newTag = new Tag();
+            $newTag->name = $item;
+            $newTag->save();
+        }
     }
 }
