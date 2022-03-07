@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Post;
 use App\Category;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
@@ -62,12 +63,13 @@ class PostController extends Controller
             'category_id' => 'exists:App\Category,id'
         ]);
 
-        
-        $boolpress = new Post();
         $data = $request->all();
-        $boolpress->fill($data);
+        $boolpress = new Post();
         $boolpress->slug = $boolpress->createSlug($data['title']);
+        $img_path = Storage::put('uploads', $data['image']);
+        $data['image'] = $img_path;
         $boolpress->user_id = Auth::id();
+        $boolpress->fill($data);
         $boolpress->save();
         return redirect()->route('adminboolpresses.show', $boolpress);
     }

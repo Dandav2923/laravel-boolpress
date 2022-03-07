@@ -5,7 +5,7 @@
     <div class="container">
         <div class="row">
             <div class="col">
-                <form action="{{route('adminboolpresses.store')}}" method="POST">
+                <form action="{{route('adminboolpresses.store')}}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('POST')
                     <div class="mb-3">
@@ -47,6 +47,10 @@
                             {{ $message }}
                         </div>
                         @enderror
+                    </div>
+                    <div class="input-group mb-3">
+                        <input type="file" class="form-control" id="image" name="image">
+                        <label class="input-group-text" for="image">Upload</label>
                     </div>
                     <button type="submit" class="btn btn-primary">
                         Crea un nuovo elemento
