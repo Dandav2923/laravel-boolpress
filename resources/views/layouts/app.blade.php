@@ -21,11 +21,12 @@
 </head>
 
 <body>
+    @include('partials.header')
     <div class="flex-center position-ref full-height">
         @if (Route::has('login'))
         <div class="top-right links">
             @auth
-            <a href="{{ route('adminhome') }}">Home</a>
+            <a href="/">Home</a>
             @else
             <a href="{{ route('login') }}">Login</a>
             
@@ -37,9 +38,7 @@
         @endif
     </div>
     <div id="app">
-        <main class="py-4">
-            @yield('content')
-        </main>
+
     </div>
 </body>
 
