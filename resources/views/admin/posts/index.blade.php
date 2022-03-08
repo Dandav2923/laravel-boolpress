@@ -29,7 +29,7 @@
                         <tr>
                             <td>{{$item->title}}</td>
                             <td>{{$item->content}}</td>
-                            <td>{{$item->category_name}}</td>
+                            <td>{{$item->category->name}}</td>
                             <td>{{$item->created_at}}</td>
                             <td>{{$item->updated_at}}</td>
                             <td>
