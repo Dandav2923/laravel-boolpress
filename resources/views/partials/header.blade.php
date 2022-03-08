@@ -20,8 +20,5 @@
                 @endguest
             </div>
         </div>
-
-
-
     </div>
 </nav>
