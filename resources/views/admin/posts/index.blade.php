@@ -1,5 +1,9 @@
 @extends('layouts.admin')
 
+@section('script')
+    <script src="{{ asset('js/admin.js') }}" defer></script>
+@endsection
+
 @section('content')
     {{-- stampare la tabella di dati presi dalla funzione index nel controller --}}
     @if (session('status'))
@@ -25,7 +29,7 @@
                         <tr>
                             <td>{{$item->title}}</td>
                             <td>{{$item->content}}</td>
-                            <td>{{$item->category_id}}</td>
+                            <td>{{$item->category_name}}</td>
                             <td>{{$item->created_at}}</td>
                             <td>{{$item->updated_at}}</td>
                             <td>

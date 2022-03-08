@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('guest.home');
 });
 
 Auth::routes();
@@ -32,3 +32,7 @@ Route::middleware('auth')
         Route::resource('categories', 'CategoryController');
         Route::resource('boolpresses', 'PostController');
     });
+
+Route::get('{any?}', function ($name = null) {
+    return view('guest.home');
+})->where('any', '.*');
