@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Post;
 use App\Category;
+use App\Tag;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
@@ -43,7 +44,8 @@ class PostController extends Controller
     public function create()
     {
         $categories = Category::all();
-        return view('admin.posts.create', ['categories'=> $categories]);
+        $tags = Tag::all();
+        return view('admin.posts.create', ['categories'=> $categories , 'tags'=> $tags]);
     }
 
     /**
@@ -54,21 +56,29 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        $validateData = $request->validate(
-        [
-            'title'=> 'required | max:80',
-            'content'=> 'required | max:1000',
-            'category_id' => 'exists:App\Category,id'
-        ]);
-
         $data = $request->all();
+        $data['user_id'] = Auth::user()->id;
+        $validateData = $request->validate(
+            [
+            'title'=> 'required | max:240',
+            'content'=> 'required',
+            'category_id' => 'exists:App\Category,id',
+            'tags.*'=> 'nullable | exists:App\Tag,id',
+            'image'=> 'nullable | image'
+        ]);
+        
+        if (!empty($data['image'])) {
+            $img_path = Storage::put('uploads', $data['image']);
+            $data['image'] = $img_path;
+        }
         $boolpress = new Post();
-        $boolpress->slug = $boolpress->createSlug($data['title']);
-        $img_path = Storage::put('uploads', $data['image']);
-        $data['image'] = $img_path;
-        $boolpress->user_id = Auth::id();
+        // $boolpress->user_id = Auth::id();
         $boolpress->fill($data);
+        $boolpress->slug = $boolpress->createSlug($data['title']);
         $boolpress->save();
+        if (!empty($data['tags'])){
+            $boolpress->tags()->attach($data['tags']);
+        }
         return redirect()->route('adminboolpresses.show', $boolpress);
     }
 
@@ -125,6 +135,6 @@ class PostController extends Controller
         $boolpress->delete();
         return redirect()
             ->route('adminboolpresses.index')
-            ->with('status', "Hai eliminato correttamente il dato $boolpress->id");
+            ->with('status', "Hai eliminato correttamente l'elemento");
     }
 }

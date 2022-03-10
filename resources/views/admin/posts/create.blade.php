@@ -9,6 +9,7 @@
                     @csrf
                     @method('POST')
                     <div class="mb-3">
+                        <label for="title" class="form-label">New Element</label>
                         <select 
                             class="form-select" 
                             aria-label="Default select example"
@@ -25,13 +26,31 @@
                             @endforeach
                         </select>
                         @error('category_id')
+                            <div class="alert alert-danger mt-3">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                    </div>
+                    <fieldset class="mb-3">
+                        <legend>
+                            <h2>Tags</h2>
+                        </legend>
+                        @foreach ($tags as $item)
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="{{$item->id}}" name="tags[]"
+                                {{in_array($item->id, old('tags', []))? 'checked': ''}}>
+                                <label class="form-check-label" for="flexCheckDefault">
+                                    {{$item->name}}
+                                </label>
+                            </div>
+                        @endforeach
+                    </fieldset>
+                    @error('tags.*')
                         <div class="alert alert-danger mt-3">
                             {{ $message }}
                         </div>
                     @enderror
-                    </div>
                     <div class="mb-3">
-                        <label for="title" class="form-label">New Element</label>
                         <input type="text" class="form-control" id="title"         aria-describedby="emailHelp" name="title" placeholder="Inserisci il titolo">
                         @error('title')
                             <div class="alert alert-danger mt-3">
@@ -40,8 +59,7 @@
                         @enderror
                     </div>
                     <div class="mb-3">
-                        <label for="content" class="form-label"></label>
-                        <input type="text" class="form-control" id="content" name="content" placeholder="inserisci il contenuto del post">
+                        <input type="text" class="form-control" id="content" name="content" placeholder="Inserisci il contenuto del post">
                         @error('content')
                             <div class="alert alert-danger mt-3">
                             {{ $message }}
@@ -50,9 +68,8 @@
                     </div>
                     <div class="input-group mb-3">
                         <input type="file" class="form-control" id="image" name="image">
-                        <label class="input-group-text" for="image">Upload</label>
                     </div>
-                    <button type="submit" class="btn btn-primary">
+                    <button type="submit" class="btn btn-dark">
                         Crea un nuovo elemento
                     </button>
                 </form>                 

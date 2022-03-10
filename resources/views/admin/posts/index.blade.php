@@ -19,6 +19,7 @@
                     <th scope="col">Title</th>
                     <th scope="col">Content</th>
                     <th scope="col">Category</th>
+                    <th scope="col">Tags</th>
                     <th scope="col">Created At</th>
                     <th scope="col">Updated At</th>
                     <th colspan="3" scope="col">Actions</th>
@@ -30,6 +31,11 @@
                             <td>{{$item->title}}</td>
                             <td>{{$item->content}}</td>
                             <td>{{$item->category->name}}</td>
+                            <td>
+                                @foreach ($item->tags()->get() as $itemTag)
+                                    {{$itemTag->name}}
+                                @endforeach
+                            </td>
                             <td>{{$item->created_at}}</td>
                             <td>{{$item->updated_at}}</td>
                             <td>
