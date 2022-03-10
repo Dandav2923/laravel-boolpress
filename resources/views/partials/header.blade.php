@@ -13,7 +13,6 @@
                         <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                     @endif
                 @else
-                    <a href="/guest">Home</a>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST">
                         @csrf
                         @method('POST')

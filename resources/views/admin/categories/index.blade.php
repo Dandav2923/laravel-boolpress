@@ -39,15 +39,15 @@
                             <td>{{ $category->created_at }}</td>
                             <td>{{ $category->updated_at }}</td>
                             <td>
-                                <a class="btn btn-primary"
+                                <a class="btn btn-dark"
                                     href="{{ route('admincategories.show', $category) }}">View</a>
                             </td>
                             <td>
-                                <a class="btn btn-primary"
+                                <a class="btn btn-dark"
                                     href="{{ route('admincategories.create')}}">Create</a>
                             </td>
                             <td>
-                                <a class="btn btn-primary"
+                                <a class="btn btn-dark"
                                     href="{{ route('admincategories.edit', $category)}}">Modify</a>
                             </td>
                             <td>

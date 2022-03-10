@@ -33,11 +33,11 @@
                             <td>{{$item->created_at}}</td>
                             <td>{{$item->updated_at}}</td>
                             <td>
-                                <a href="{{route('adminboolpresses.create')}}">Create new element</a>
+                                <a href="{{route('adminboolpresses.create')}}"><input type="submit" value="Create" class="btn btn-light"></a>
                             </td>
                         <td>
                             <a href="{{route('adminboolpresses.edit', $item)}}">
-                                Modifica elemento
+                                <input type="submit" value="Edit" class="btn btn-light">
                             </a>
                         </td>
                         <td>
