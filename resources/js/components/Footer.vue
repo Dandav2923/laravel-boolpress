@@ -1,7 +1,7 @@
 <template>
   <div class="container">
       <div class="row">
-          <div class="col">Hello World</div>
+          <div class="col">Footer</div>
       </div>
   </div>
 </template>
