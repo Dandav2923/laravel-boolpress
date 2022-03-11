@@ -72,7 +72,6 @@ class PostController extends Controller
             $data['image'] = $img_path;
         }
         $boolpress = new Post();
-        // $boolpress->user_id = Auth::id();
         $boolpress->fill($data);
         $boolpress->slug = $boolpress->createSlug($data['title']);
         $boolpress->save();
