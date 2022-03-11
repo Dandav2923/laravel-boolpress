@@ -22,4 +22,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "~bootstrap/scss/bootstrap";
 </style>
