@@ -10,7 +10,7 @@
                 <p>{{$boolpress->created_at}}</p>
                 <p>{{$boolpress->updated_at}}</p>
                 <img src="{{asset('storage/' . $boolpress->image)}}" alt="{{$boolpress->title}}">
-                <a href="{{route('adminhome')}}">Torna alla home</a>
+                <a href="{{route('adminboolpresses.index')}}">Torna alla home</a>
             </div>
         </div>
     </div>

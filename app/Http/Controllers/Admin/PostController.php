@@ -89,8 +89,8 @@ class PostController extends Controller
      */
     public function show(Post $boolpress)
     {
-        $data =['boolpress' => $boolpress];
-        return view('admin.posts.show', $data);
+        // $data =['boolpress' => $boolpress];
+        return view('admin.posts.show', ['boolpress' => $boolpress]);
     }
 
     /**
@@ -105,7 +105,8 @@ class PostController extends Controller
             abort('403');
         }
         $categories = Category::all();
-        return view('admin.posts.edit', ['boolpress' => $boolpress, 'categories'=> $categories]);
+        $tags = Tag::all();
+        return view('admin.posts.edit', ['boolpress' => $boolpress, 'categories'=> $categories , 'tags'=> $tags]);
     }
 
     /**

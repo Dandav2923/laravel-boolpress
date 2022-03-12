@@ -39,7 +39,7 @@
                             <td>{{$item->created_at}}</td>
                             <td>{{$item->updated_at}}</td>
                             <td>
-                                <a href="{{route('adminboolpresses.create')}}"><input type="submit" value="Create" class="btn btn-light"></a>
+                                <a class="btn btn-light" href="{{route('adminboolpresses.show', $item)}}">View</a>
                             </td>
                         <td>
                             <a href="{{route('adminboolpresses.edit', $item)}}">
@@ -59,7 +59,7 @@
                 </tbody>
                 <tfoot>
                     <tr>
-                        <td colspan="8">{{ $posts->links() }}</td>
+                        <td colspan="9">{{ $posts->links() }}</td>
                     </tr>
                 </tfoot>
             </table>
