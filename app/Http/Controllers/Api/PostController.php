@@ -18,7 +18,7 @@ class PostController extends Controller
     }
     public function indexRandom()
     {
-        $posts = Post::inRandomOrder()->limit(6)->get();
+        $posts = Post::inRandomOrder()->paginate(3);
         return response()->json([
             'response' => true,
             'results' =>  $posts
