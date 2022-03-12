@@ -16,6 +16,14 @@ class PostController extends Controller
             'results' =>  $posts,
         ]);
     }
+    public function indexRandom()
+    {
+        $posts = Post::inRandomOrder()->limit(6)->get();
+        return response()->json([
+            'response' => true,
+            'results' =>  $posts
+        ]);
+    }
 
     public function show($id) 
     {
@@ -29,16 +37,4 @@ class PostController extends Controller
         ]);
     }
 
-    public function orderBy(Request $request)
-    {
-        
-        $data = $request->all();
-        $posts = Post::orderBy($data['orderby'], $data['order'])->get();
-
-        return response()->json([
-            'response' => true,
-            'results' =>  $posts,
-        ]);
-
-    }
 }

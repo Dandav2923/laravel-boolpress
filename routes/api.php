@@ -18,5 +18,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 Route::get('/posts', 'Api\PostController@index');
+Route::get('/posts/random', 'Api\PostController@indexRandom');
 Route::get('/posts/{id}', 'Api\PostController@show');
-Route::post('/posts', 'Api\PostController@orderBy');
