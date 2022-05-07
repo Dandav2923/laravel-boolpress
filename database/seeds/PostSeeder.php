@@ -23,10 +23,8 @@ class PostSeeder extends Seeder
                 $newPost->content = $faker->paragraphs(5, true);
                 $newPost->image = $faker->imageUrl(640, 480, 'animals', true);
                 $newPost->slug = Str::slug($newPost->title . '-' . $i, '-');
-    
                 $randomUser = User::inRandomOrder()->first();
                 $newPost->user_id = $randomUser->id;
-                
                 $randomCategory = Category::inRandomOrder()->first();
                 $newPost->category_id = $randomCategory->id;
                 $newPost->save();
